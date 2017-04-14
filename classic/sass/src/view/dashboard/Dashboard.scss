@@ -1,0 +1,83 @@
+.dataview-multisort-item {
+	float:left;
+	min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    width: 25%;
+}
+
+.x-rtl .dataview-multisort-item {
+	float:right
+}
+
+.campaign_item {
+    margin-bottom: 25px;
+    border: 1px solid #eeeeee;
+    transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -webkit-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    position: relative;
+    box-shadow: 3px 3px 0px rgba(0, 0, 0, 0.02);
+}
+
+.campaign_item .detail_1 {
+    padding: 15px 15px;
+    line-height: 1.5;
+}
+
+.campaign_item .title {
+    font-size: 16px;
+    color: #333333;
+    text-decoration: none;
+    font-weight: lighter;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.campaign_item .traffic_type {
+    margin-top: 3px;
+}
+
+.campaign_item .price {
+    color: #888888;
+    font-size: 25px;
+    font-weight: lighter;
+    display: block;
+}
+
+.campaign_item .icon {
+    float: left;
+    margin-right: 20px;
+    height: 115px;
+    width: 115px;
+}
+
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 20px;
+}
+
+.sale-tag {
+    background-color: #ff9601;
+    color: #fff;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 400;
+    margin-left: 5px;
+    margin-top: -2px;
+    padding: 5px;
+    vertical-align: middle;
+}
+
+.price-regular {
+    font-size: 15px;
+    color: #999;
+    text-decoration: line-through;
+    display: block;
+    text-align: left;
+}
