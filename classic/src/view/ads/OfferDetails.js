@@ -108,6 +108,10 @@ Ext.define('Admin.view.ads.OfferDetails', {
             {
     xtype: 'gridpanel',
     userCls: 'big-30 small-100',
+    store: {
+        type: 'similarOffers'
+    },
+    stateful: true,
     width: '30%',
     height: '50%',
     title: 'Similar Campaign',
@@ -121,12 +125,28 @@ Ext.define('Admin.view.ads.OfferDetails', {
         enableTextSelection: true
     },
     columns : {
-            items: [{
+            items: [
+                {
                 menuDisabled: true,
-                width: '30%',
+                width: '33%',
                 sortable : true,
-                dataIndex: 'name'
-            }]
+                
+                renderer: function(val) {
+                    return '<img style="width: 30px; height: auto;" class="app-image" src="resources/images/apps/' + val + '" />';
+                },
+                dataIndex: 'imgUrl'
+            },
+             {
+                 text: 'Payout',
+                 width: '33%',
+                 dataIndex: 'payout'
+             },
+             {
+                 text: 'Platform',
+                 width: '33%',
+                 dataIndex: 'platform'
+             }
+            ]
     },
     
         }
