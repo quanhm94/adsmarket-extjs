@@ -9,14 +9,22 @@ Ext.define('Admin.view.profile.Social', {
 
     layout: {
         type: 'vbox',
-        align: 'middle'
+        align: 'middle',
     },
 
-    height: 320,
+    height: 500,
     
     bodyPadding: 20,
     
     items: [
+        {
+            xtype: 'filebutton', // Same as filefield above
+            text : 'Upload',
+            width: '100%',
+            margin: 'auto',
+            listeners: {
+            }
+        },
         {
             xtype: 'image',
             cls: 'userProfilePic',
@@ -28,7 +36,6 @@ Ext.define('Admin.view.profile.Social', {
         {
             xtype: 'component',
             cls: 'userProfileName',
-            height: '',
             html: 'Jessica Warren'
         },
         {
@@ -62,19 +69,6 @@ Ext.define('Admin.view.profile.Social', {
                     iconCls: 'x-fa fa-envelope'
                 }
             ]
-        },
-        {
-            xtype: 'button',
-            width: 220,
-            text: 'Follow',
-            platformConfig: {
-                classic: {
-                    scale: 'large'
-                },
-                modern: {
-                    ui: 'action'
-                }
-            }
         }
     ]
 });

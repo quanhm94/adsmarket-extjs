@@ -14,17 +14,17 @@ Ext.define('Admin.view.profile.UserProfile', {
             xtype: 'profilesocial',
             
             // Use 50% of container when viewport is big enough, 100% otherwise
-            userCls: 'big-50 small-100 shadow'
+            userCls: 'big-20 small-100 shadow'
         },
         {
             xtype: 'profiledescription',
 
-            userCls: 'big-50 small-100 shadow'
+            userCls: 'big-60 small-100 shadow'
         },
-        {
-            xtype: 'wizardform',
-            colorScheme: 'blue',
-            userCls: 'big-100 small-100'
+            {
+            xtype: 'bankinfocard',
+
+            userCls: 'big-20 small-100 shadow'
         }
     ]
 });

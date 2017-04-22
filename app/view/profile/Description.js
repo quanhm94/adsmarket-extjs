@@ -11,105 +11,115 @@ Ext.define('Admin.view.profile.Description', {
         type: 'vbox',
         align: 'stretch'
     },
+    title: 'Thông tin cá nhân',
+    titleAlign: 'left',
 
     cls: 'timeline-items-wrap user-profile-desc',
 
-    height: 320,
-
     items: [
         {
-            xtype: 'component',
-            baseCls: 'box x-fa fa-home',
-            html: 'San Jose, CA',
-            padding: '0 0 12 0'
-        },
-        {
-            xtype: 'component',
-            baseCls: 'box x-fa fa-clock-o',
-            html: 'Member since 1 years ago',
-            padding: '0 0 12 0'
-        },
-        {
-            xtype: 'component',
-            baseCls: 'box x-fa fa-globe',
-            html: '<a href="#"\'>http://www.sencha-dash.com/</a>',
-            padding: '0 0 12 0'
-        },
-        {
-            xtype: 'container',
-            flex: 1,
-            cls: 'about-me-wrap',
-            html: '<h3 class="x-fa fa-user">About Me</h3><p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>'
-        },
-        {
-            xtype:'toolbar',
-            ui: 'plain',
-            layout : {
-                type : 'hbox',
-                pack : 'center'
-            },
-            userCls: 'profiledescription-social-toolbar',
-            items:[
-                {
-                    xtype: 'component',
-                    cls: 'large-icon icon-padding',
-                    baseCls:'x-fa fa-thumbs-up',
-                    padding: '8 0 8 0'
-                },
-                {
-                    xtype: 'container',
-                    layout: {
-                        type: 'vbox',
-                        align: 'center',
-                        pack: 'center'
-                    },
-                    items: [
-                        {
-                            xtype: 'component',
-                            cls: 'likes-value',
-                            html: '523'
-                        },
-                        {
-                            xtype: 'component',
-                            cls: 'likes-label',
-                            html: 'Likes'
-                        }
-                    ]
-                },
+            xtype: 'form',
+            margin: '10px 0 0 0',
+            layout: 'form',
+            items: [{
+                xtype: 'textfield',
+                name: 'fullName',
+                fieldLabel: 'Họ Và Tên',
+                value: ''
+            }, {
+                xtype: 'datefield',
+                name: 'dob',
+                fieldLabel: 'Ngày Sinh'
+            }, {
+                xtype: 'textfield',
+                name: 'userName',
+                fieldLabel: 'Tên đăng nhập',
+                value: ''
+            }, {
+                xtype: 'textfield',
+                name: 'email',
+                inputType: 'email',
+                fieldLabel: 'Email',
+                value: ''
+            }, {
+                xtype: 'textfield',
+                name: 'phoneNumber',
+                fieldLabel: 'Điện thoại di động',
+                value: ''
+            }, {
+                xtype: 'textfield',
+                name: 'skypeId',
+                fieldLabel: 'Skype ID',
+                value: ''
+            }, {
+                xtype: 'radiofield',
+                name: 'accType',
+                value: 'acc_vie',
+                fieldLabel: 'Loại tài khoản',
+                boxLabel: 'Cá nhân cư trú tại Việt Nam'
+            }, {
+                xtype: 'radiofield',
+                name: 'accType',
+                value: 'acc_non_vie',
+                fieldLabel: '',
+                labelSeparator: '',
+                hideEmptyLabel: false,
+                boxLabel: 'Cá nhân không cư trú tại Việt Nam'
+            },{
+                xtype: 'radiofield',
+                name: 'accType',
+                value: 'acc_non_vie',
+                fieldLabel: '',
+                labelSeparator: '',
+                hideEmptyLabel: false,
+                boxLabel: 'Doanh nghiệp Việt Nam'
+            },{
+                xtype: 'radiofield',
+                name: 'accType',
+                value: 'acc_non_vie',
+                fieldLabel: '',
+                labelSeparator: '',
+                hideEmptyLabel: false,
+                boxLabel: 'Doanh nghiệp nước ngoài'
+            }],
+            url: 'saveForm',
+            buttons: [{
+                 text: 'Lưu thay đổi'
+            }
+               
 
-                {
-                    xtype: 'component',
-                    cls: 'icon-padding',
-                    baseCls:'x-fa fa-ellipsis-v',
-                    padding: '8 0 8 0'
-                },
+            ]
 
+        },
+        {
+            xtype: 'form',
+            margin: '10px 0 0 0',
+            layout: 'form',
+            title: 'Thông tin mật khẩu',
+            items: [
                 {
-                    xtype: 'component',
-                    cls: 'large-icon icon-padding',
-                    baseCls:'x-fa fa-user-plus',
-                    padding: '8 0 8 0'
-                },
-                {
-                    xtype: 'container',
-                    layout: {
-                        type: 'vbox',
-                        align: 'center',
-                        pack: 'center'
-                    },
-                    items: [
-                        {
-                            xtype: 'component',
-                            cls: 'friends-value',
-                            html: '734'
-                        },
-                        {
-                            xtype: 'component',
-                            cls: 'friends-label',
-                            html: 'Friends'
-                        }
-                    ]
-                }
+                xtype: 'textfield',
+                name: 'currentPassword',
+                fieldLabel: 'Tên đăng nhập hiện tại',
+                value: '***************',
+                disabled: true,
+            }, {
+                xtype: 'textfield',
+                name: 'newPassword',
+                fieldLabel: 'Tên đăng nhập mới',
+                value: ''
+            }, {
+                xtype: 'textfield',
+                name: 'newPasswordRepeat',
+                fieldLabel: 'Xác nhận tên đăng nhập mới',
+                value: ''
+            }
+            ],
+                        buttons: [{
+                 text: 'Lưu mật khẩu'
+            }
+               
+
             ]
         }
     ]

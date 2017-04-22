@@ -98,7 +98,7 @@ Ext.define('Admin.view.dashboard.Dashboard', {
         ],
 
         listeners : {
-            itemdblclick: 'showAppDetails'
+            itemclick: 'showAppDetails'
         },
 
         store: {

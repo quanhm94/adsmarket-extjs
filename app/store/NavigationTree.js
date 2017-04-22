@@ -25,6 +25,30 @@ Ext.define('Admin.store.NavigationTree', {
                 viewType: 'searchresults',
                 leaf: true
             },
+             {
+                text: 'Report',
+                iconCls: 'x-fa fa-leanpub',
+                expanded: false,
+                selectable: false,
+                //routeId: 'pages-parent',
+                //id: 'pages-parent',
+
+                children: [
+                    {
+                        text: 'Smart Report',
+                        iconCls: 'x-fa fa-file-o',
+                        viewType: 'pageblank',
+                        leaf: true
+                    },
+
+                    {
+                        text: 'Detail Report',
+                        iconCls: 'x-fa fa-exclamation-triangle',
+                        viewType: 'page404',
+                        leaf: true
+                    }
+                ]
+            },
             {
                 text: 'Profile',
                 iconCls: 'x-fa fa-user',
@@ -32,7 +56,7 @@ Ext.define('Admin.store.NavigationTree', {
                 leaf: true
             },
             {
-                text: 'Mine',
+                text: 'My Offers',
                 iconCls: 'x-fa fa-list',
                 rowCls: 'nav-tree-badge nav-tree-badge-hot',
                 viewType: 'offer-list',
