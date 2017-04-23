@@ -7,7 +7,9 @@ Ext.define('Admin.view.authentication.Register', {
         'Ext.button.Button',
         'Ext.form.Label',
         'Ext.form.field.Checkbox',
-        'Ext.form.field.Text'
+        'Ext.form.field.Text',
+        'Ext.form.field.Radio'
+
     ],
 
     title: 'User Registration',
@@ -18,18 +20,18 @@ Ext.define('Admin.view.authentication.Register', {
             xtype: 'authdialog',
             bodyPadding: '20 20',
             width: 455,
-            reference : 'authDialog',
+            reference: 'authDialog',
 
-            defaultButton : 'submitButton',
+            defaultButton: 'submitButton',
             autoComplete: true,
             cls: 'auth-dialog-register',
             layout: {
                 type: 'vbox',
                 align: 'stretch'
             },
-            defaults : {
+            defaults: {
                 margin: '10 0',
-                selectOnFocus : true
+                selectOnFocus: true
             },
             items: [
                 {
@@ -42,7 +44,7 @@ Ext.define('Admin.view.authentication.Register', {
                     cls: 'auth-textbox',
                     height: 55,
                     hideLabel: true,
-                    allowBlank : false,
+                    allowBlank: false,
                     emptyText: 'Fullname',
                     name: 'fullname',
                     bind: '{fullname}',
@@ -57,7 +59,7 @@ Ext.define('Admin.view.authentication.Register', {
                     cls: 'auth-textbox',
                     height: 55,
                     hideLabel: true,
-                    allowBlank : false,
+                    allowBlank: false,
                     name: 'username',
                     bind: '{username}',
                     emptyText: 'Username',
@@ -72,7 +74,7 @@ Ext.define('Admin.view.authentication.Register', {
                     cls: 'auth-textbox',
                     height: 55,
                     hideLabel: true,
-                    allowBlank : false,
+                    allowBlank: false,
                     name: 'email',
                     emptyText: 'user@example.com',
                     vtype: 'email',
@@ -88,16 +90,52 @@ Ext.define('Admin.view.authentication.Register', {
                     cls: 'auth-textbox',
                     height: 55,
                     hideLabel: true,
-                    allowBlank : false,
+                    allowBlank: false,
                     emptyText: 'Password',
                     name: 'password',
                     inputType: 'password',
+                    vtype: 'adsPassword',
+                    validateOnBlur: true,
+                    validateOnChange: true,
                     bind: '{password}',
                     triggers: {
                         glyphed: {
                             cls: 'trigger-glyph-noop auth-password-trigger'
                         }
                     }
+                }, {
+                    xtype: 'radiogroup',
+                    defaultType: 'radiofield',
+                    allowBlank: false,
+                    defaults: {
+                        name: "gender"
+                    },
+                    items: [
+                        {
+                            boxLabel: "male",
+                            inputValue: 'male',
+                            checked: true
+                        }, {
+                            boxLabel: "female",
+                            inputValue: 'female'
+                        }, {
+                            boxLabel: "other",
+                            inputValue: 'other'
+                        }
+                    ],
+                    bind: { value: '{gender}' },
+                    fieldLabel: "Gender"
+                }, {
+                    xtype: 'textfield',
+                    height: 55,
+                    hideLabel: true,
+                    allowBlank: true,
+                    emptyText: 'Referee',
+                    name: 'refereeUserName',
+                    bind: '{refereeUserName}',
+                    validateOnBlur: true,
+                    validateOnChange: false,
+                    vtype: 'referee'
                 },
                 {
                     xtype: 'checkbox',
@@ -106,11 +144,11 @@ Ext.define('Admin.view.authentication.Register', {
                     cls: 'form-panel-font-color rememberMeCheckbox',
                     height: 32,
                     bind: '{agrees}',
-                    allowBlank : false,
+                    allowBlank: false,
                     boxLabel: 'I agree with the Terms and Conditions',
 
                     // In this case, the form operation is not VALID unless Terms are agreed upon
-                    isValid: function() {
+                    isValid: function () {
                         var me = this;
                         return me.checked || me.disabled;
                     }
@@ -149,9 +187,9 @@ Ext.define('Admin.view.authentication.Register', {
                 {
                     xtype: 'component',
                     html: '<div style="text-align:right">' +
-                        '<a href="#login" class="link-forgot-password">'+
-                            'Back to Log In</a>' +
-                        '</div>'
+                    '<a href="#login" class="link-forgot-password">' +
+                    'Back to Log In</a>' +
+                    '</div>'
                 }
             ]
         }
