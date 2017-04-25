@@ -31,9 +31,10 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
             }
         });
         // Set user to global variable
-        console.log(isAuthenticated);
         if (isAuthenticated) {
              Admin.user = userid;
+             localStorage.setItem("userLoggedIn", true);
+             localStorage.setItem("userName", userid);
              this.redirectTo('dashboard', true);
         }
         else {

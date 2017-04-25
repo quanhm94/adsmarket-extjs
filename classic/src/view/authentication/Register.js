@@ -63,6 +63,9 @@ Ext.define('Admin.view.authentication.Register', {
                     name: 'username',
                     bind: '{username}',
                     emptyText: 'Username',
+                    validateOnBlur: true,
+                    validateOnChange: true,
+                    vtype: 'userNameValidate',
                     triggers: {
                         glyphed: {
                             cls: 'trigger-glyph-noop auth-email-trigger'
@@ -134,7 +137,7 @@ Ext.define('Admin.view.authentication.Register', {
                     name: 'refereeUserName',
                     bind: '{refereeUserName}',
                     validateOnBlur: true,
-                    validateOnChange: false,
+                    validateOnChange: true,
                     vtype: 'referee'
                 },
                 {

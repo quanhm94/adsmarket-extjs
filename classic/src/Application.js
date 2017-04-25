@@ -32,7 +32,6 @@ Ext.define('Admin.Application', {
 
     onUser : function(user) {
         this.appready = true;
-        this.fireEvent('appready', this, user);
     },
     
     onAppUpdate: function () {

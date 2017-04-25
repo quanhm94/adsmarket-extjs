@@ -1,9 +1,9 @@
 // custom Vtype for vtype:'time'
-Ext.define('Admin.overrides.RefereeValidation', {
+Ext.define('Admin.overrides.UserNameValidation', {
     override: 'Ext.form.field.VTypes',
 
     // vtype validation function
-    referee: function(value) {
+    userNameValidate: function(value) {
                         var result = Ext.Ajax.request({
                             url: 'http://localhost:8080/checkReferee',
                             method: 'POST',
@@ -13,12 +13,12 @@ Ext.define('Admin.overrides.RefereeValidation', {
 
                             }
                         });
-                        return Ext.decode(result.responseText);
+                        return !Ext.decode(result.responseText);
     },
     // RegExp for the value to be tested against within the validation function
-    refereeRe: /^([1-9]|1[0-9]):([0-5][0-9])(\s[a|p]m)$/i,
+    userNameValidateRe: /^([1-9]|1[0-9]):([0-5][0-9])(\s[a|p]m)$/i,
     // vtype Text property: The error text to display when the validation function returns false
-    refereeText: 'This user is not existed',
+    userNameValidateText: 'This username is existed',
     // vtype Mask property: The keystroke filter mask
-    refereeMask: /./
+    userNameValidateMask: /./
 });

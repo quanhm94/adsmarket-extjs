@@ -72,7 +72,8 @@ Ext.define('Admin.store.NavigationTree', {
                 text: 'Logout',
                 iconCls: 'x-fa fa-sign-out',
                 viewType: 'login',
-                leaf: true
+                leaf: true,
+                routeId: 'logout'
             }
         ]
     }

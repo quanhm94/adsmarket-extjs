@@ -16,8 +16,19 @@ Ext.define('Admin.view.main.MainController', {
             action  : 'onDashboardRouteChange'
         },
         'searchresults': 'onSearchResultsRouteChange',
-        'profile': 'onProfileRouteChange',
+        'profile': {
+            before  : 'checkSession',
+            action: 'onProfileRouteChange'
+        },
+        'login' : {
+            before  : 'checkSession',
+            action: 'onLoginChange'
+        },
+        'logout' : {
+            action: 'onLogoutChange'
+        },
         'offer-details/:id': {
+             before  : 'checkSession',
             action     : 'showAppDetails',
             conditions : {
                 ':id' : '([0-9]+)'
@@ -27,27 +38,42 @@ Ext.define('Admin.view.main.MainController', {
 
     lastView: null,
 
+    onLogoutConfirm : function(choice) {
+         if (choice === 'yes') {
+             localStorage.clear();
+            this.setCurrentView('login');
+            
+         }
+    },
+    onLoginChange: function() {
+           
+               this.setCurrentView('dashboard');
+    },
+
+    onLogoutChange: function() {
+        Ext.Msg.confirm('Confirm', 'Are you sure to logout?', 'onLogoutConfirm', this); 
+    },
+
     handleSessionCheck : function(beAdmin, args) {
         args = Ext.Array.slice(args);
 
         var me     = this,
             action = args[args.length - 1],
             app    = Admin.app;
+        var isLoggedIn = localStorage.getItem('userLoggedIn');
+        var loggedInUser = localStorage.getItem('userName');
 
         if (app.appready) {
-            if (Admin.user) {
-                if (beAdmin) {
-                    if (Admin.user === 'admin') {
-                       action.resume();
-                    } else {
-                      action.stop();
-                    }
-                } else {
-                   action.resume();
+            if (Admin.user || isLoggedIn == "true") {
+                if (Admin.user || (loggedInUser != undefined)) {
+                    action.resume();
+                }
+                else {
+                    action.stop();
+                    me.redirectTo('login');
                 }
             } else {
-               action.stop();
-
+                action.stop();
                 me.redirectTo('login');
             }
         } else {
@@ -61,7 +87,8 @@ Ext.define('Admin.view.main.MainController', {
     },
 
     checkSession : function() {
-        this.handleSessionCheck(false, arguments);
+        var isAdminCheck = localStorage.getItem('isAdmin');
+        this.handleSessionCheck(isAdminCheck, arguments);
     },
 
     checkIsAdmin : function() {
@@ -235,15 +262,15 @@ Ext.define('Admin.view.main.MainController', {
     },
 
     showAppDetails: function(id) {
-        var model = Ext.create('Admin.view.ads.OfferDetail', {id : 1});
-        model.load({
+        var detailModel =  new Admin.view.ads.OfferDetail();
+        detailModel.load(id, {
             scope: this,
-            success : function() {
+            success : function(record) {
                 newView = Ext.create({
                     xtype: 'offer-details',
                     hideMode: 'offsets'
                 });
-                newView.loadRecord(model);
+                newView.loadRecord(record);
 
                 var me = this,
                     refs = me.getReferences(),
@@ -252,9 +279,6 @@ Ext.define('Admin.view.main.MainController', {
                 Ext.suspendLayouts();
                 mainLayout.setActiveItem(mainCard.add(newView));
                 Ext.resumeLayouts(true);
-            },
-            failure : function() {
-                
             }
         });
     }

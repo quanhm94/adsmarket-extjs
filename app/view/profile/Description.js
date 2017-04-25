@@ -21,6 +21,16 @@ Ext.define('Admin.view.profile.Description', {
             xtype: 'form',
             margin: '10px 0 0 0',
             layout: 'form',
+            viewModel: {
+                stores: {
+                    userDescriptions: {
+                        type: 'userDescriptions',
+                        listeners: {
+
+                        }
+                    }
+                }
+            },
             items: [{
                 xtype: 'textfield',
                 name: 'fullName',
@@ -65,7 +75,7 @@ Ext.define('Admin.view.profile.Description', {
                 labelSeparator: '',
                 hideEmptyLabel: false,
                 boxLabel: 'Cá nhân không cư trú tại Việt Nam'
-            },{
+            }, {
                 xtype: 'radiofield',
                 name: 'accType',
                 value: 'acc_non_vie',
@@ -73,7 +83,7 @@ Ext.define('Admin.view.profile.Description', {
                 labelSeparator: '',
                 hideEmptyLabel: false,
                 boxLabel: 'Doanh nghiệp Việt Nam'
-            },{
+            }, {
                 xtype: 'radiofield',
                 name: 'accType',
                 value: 'acc_non_vie',
@@ -84,9 +94,9 @@ Ext.define('Admin.view.profile.Description', {
             }],
             url: 'saveForm',
             buttons: [{
-                 text: 'Lưu thay đổi'
+                text: 'Lưu thay đổi'
             }
-               
+
 
             ]
 
@@ -98,27 +108,27 @@ Ext.define('Admin.view.profile.Description', {
             title: 'Thông tin mật khẩu',
             items: [
                 {
-                xtype: 'textfield',
-                name: 'currentPassword',
-                fieldLabel: 'Tên đăng nhập hiện tại',
-                value: '***************',
-                disabled: true,
-            }, {
-                xtype: 'textfield',
-                name: 'newPassword',
-                fieldLabel: 'Tên đăng nhập mới',
-                value: ''
-            }, {
-                xtype: 'textfield',
-                name: 'newPasswordRepeat',
-                fieldLabel: 'Xác nhận tên đăng nhập mới',
-                value: ''
-            }
+                    xtype: 'textfield',
+                    name: 'currentPassword',
+                    fieldLabel: 'Tên đăng nhập hiện tại',
+                    value: '***************',
+                    disabled: true,
+                }, {
+                    xtype: 'textfield',
+                    name: 'newPassword',
+                    fieldLabel: 'Tên đăng nhập mới',
+                    value: ''
+                }, {
+                    xtype: 'textfield',
+                    name: 'newPasswordRepeat',
+                    fieldLabel: 'Xác nhận tên đăng nhập mới',
+                    value: ''
+                }
             ],
-                        buttons: [{
-                 text: 'Lưu mật khẩu'
+            buttons: [{
+                text: 'Lưu mật khẩu'
             }
-               
+
 
             ]
         }

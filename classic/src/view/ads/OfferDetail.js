@@ -1,9 +1,10 @@
 Ext.define('Admin.view.ads.OfferDetail', {
     extend: 'Admin.model.Base',
 
-    idProperty: 'id',
+    idProperty: 'offerId',
 
     fields: [
+        {name: 'id', mapping: 'offerId', type: 'int'},
         {name: 'name',     type: 'string'},
         {name: 'thumb',     type: 'string'},
         {name: 'status',     type: 'string'},
@@ -20,12 +21,10 @@ Ext.define('Admin.view.ads.OfferDetail', {
 
     proxy: {
         type: 'ajax',
-        idParam: 'id',
+        idParam: 'offerId',
         url: 'resources/data/offer-detail.json',
-        appendId: false,
         reader: {
-            type: 'json',
-            rootProperty: 'data'
+            type: 'json'
         }
     }
 });
