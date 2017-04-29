@@ -22,7 +22,9 @@ Ext.define('Admin.view.profile.Social', {
             text : 'Upload',
             width: '100%',
             margin: 'auto',
+            id: 'userImage',
             listeners: {
+                change : function() {Ext.Msg.alert('Success!', 'We have been rendered');}
             }
         },
         {

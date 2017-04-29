@@ -14,7 +14,7 @@ Ext.define('Admin.view.dashboard.DashboardModel', {
             autoLoad: true,
             model: 'Admin.model.DataXY',
             proxy: {
-                type: 'api',
+                type: 'ajax',
                 url: '~api/qg/area'
             }
 

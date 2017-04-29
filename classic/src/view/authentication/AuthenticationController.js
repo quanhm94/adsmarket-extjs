@@ -4,16 +4,17 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
 
     //TODO: implement central Facebook OATH handling here
 
-    onFaceBookLogin : function() {
+    onFaceBookLogin: function () {
         this.redirectTo('dashboard', true);
     },
 
-    onLoginButton: function() {
+    onLoginButton: function () {
         var userid = this.getViewModel().get('userid');
         var password = this.getViewModel().get('password');
         var isAuthenticated;
+        Admin.loginAttemp = true;
         Ext.Ajax.request({
-            url: 'http://localhost:8080/authenticate',
+            url: 'http://localhost:8080/security/authenticate',
             method: 'POST',
             scope: this,
             async: false,
@@ -21,60 +22,75 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
                 userName: userid,
                 password: password
             },
-            success: function(response, opts) {
-                isAuthenticated = Ext.decode(response.responseText);
+            success: function (response, opts) {
+                if (response.responseText != "") {
+                    isAuthenticated = Ext.decode(response.responseText);
+                }
+
             },
 
-            failure: function(response, opts) {
+            failure: function (response, opts) {
                 console.log('server-side failure with status code ' + response.status);
                 isAuthenticated = false;
             }
         });
         // Set user to global variable
-        if (isAuthenticated) {
-             Admin.user = userid;
-             localStorage.setItem("userLoggedIn", true);
-             localStorage.setItem("userName", userid);
-             this.redirectTo('dashboard', true);
+        if (isAuthenticated != undefined) {
+            Admin.user = userid;
+            Admin.userId = isAuthenticated;
+            localStorage.setItem("userLoggedIn", true);
+            localStorage.setItem("userName", userid);
+            localStorage.setItem("userId", isAuthenticated);
+            this.redirectTo('dashboard', true);
         }
         else {
-            this.redirectTo('login', true);
+           new PNotify({
+                title: 'Authentication failed',
+                text: 'Wrong username or password',
+                animate: {
+                    animate: true,
+                    in_class: 'bounceInLeft',
+                    out_class: 'bounceOutRight'
+                },
+                type: 'error'
+            });
+  
         }
-        
-        
 
-//        Ext.Ajax.request({
-//            url     : 'http://localhost:8080/authenticate/',
-//            method: 'POST',          
-//            params: {
-//                userid      : userid,
-//                password    : password
-//            },
-//            cors    : true,
-//            scope   : this,
-//            failure : function() {
-//                
-//            },
-//            success : function(response) {
-//                val = Ext.decode(response.responseText)
-//                if (val) {
-//                    this.redirectTo('dashboard', true);
-//                } else {
-//                    
-//                }
-//            }
-//        })
+
+
+        //        Ext.Ajax.request({
+        //            url     : 'http://localhost:8080/authenticate/',
+        //            method: 'POST',          
+        //            params: {
+        //                userid      : userid,
+        //                password    : password
+        //            },
+        //            cors    : true,
+        //            scope   : this,
+        //            failure : function() {
+        //                
+        //            },
+        //            success : function(response) {
+        //                val = Ext.decode(response.responseText)
+        //                if (val) {
+        //                    this.redirectTo('dashboard', true);
+        //                } else {
+        //                    
+        //                }
+        //            }
+        //        })
     },
 
-    onLoginAsButton: function() {
+    onLoginAsButton: function () {
         this.redirectTo('login', true);
     },
 
-    onNewAccount:  function() {
+    onNewAccount: function () {
         this.redirectTo('register', true);
     },
 
-    onSignupClick:  function(response) {
+    onSignupClick: function (response) {
         var fullName = this.getViewModel().get('fullname');
         var userName = this.getViewModel().get('username');
         var password = this.getViewModel().get('password');
@@ -106,7 +122,7 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
         //     if (!refereeUserName) { return;}
         // }
         Ext.Ajax.request({
-            url: 'http://localhost:8181/register',
+            url: 'http://localhost:8181/security/register',
             method: 'POST',
             scope: me,
             async: false,
@@ -118,28 +134,28 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
                 email: email,
                 refereeUserName: refereeUserName
             },
-            success: function(response, opts) {
+            success: function (response, opts) {
                 Admin.user = userName;
                 me.redirectTo('dashboard', true);
             },
 
-            failure: function(response, opts) {
-                 me.redirectTo('register', true);
+            failure: function (response, opts) {
+                me.redirectTo('register', true);
             }
         });
-//         if (isNew) {
-//                  var newUser = Ext.create('Admin.model.appuser.AppUser', {
-//             userFullName   : fullname,
-//             userName : username,
-//             password  : password,
-//             email: email
-// });
-//             console.log('imhere');
-//         userList.add(newUser);
-   
+        //         if (isNew) {
+        //                  var newUser = Ext.create('Admin.model.appuser.AppUser', {
+        //             userFullName   : fullname,
+        //             userName : username,
+        //             password  : password,
+        //             email: email
+        // });
+        //             console.log('imhere');
+        //         userList.add(newUser);
+
     },
 
-    onResetClick:  function() {
+    onResetClick: function () {
         this.redirectTo('dashboard', true);
     }
 });

@@ -11,7 +11,7 @@ Ext.define('Admin.view.profile.Description', {
         type: 'vbox',
         align: 'stretch'
     },
-    title: 'Thông tin cá nhân',
+
     titleAlign: 'left',
 
     cls: 'timeline-items-wrap user-profile-desc',
@@ -21,13 +21,14 @@ Ext.define('Admin.view.profile.Description', {
             xtype: 'form',
             margin: '10px 0 0 0',
             layout: 'form',
+            title: 'Thông tin cá nhân',
+            baseParams: {
+                id: localStorage.getItem('userId')
+            },
             viewModel: {
                 stores: {
                     userDescriptions: {
-                        type: 'userDescriptions',
-                        listeners: {
-
-                        }
+                        type: 'userDescriptions'
                     }
                 }
             },
@@ -35,71 +36,137 @@ Ext.define('Admin.view.profile.Description', {
                 xtype: 'textfield',
                 name: 'fullName',
                 fieldLabel: 'Họ Và Tên',
-                value: ''
+                bind: {
+                    value: '{userDescriptions.data.items.0.fullName}'
+                }
             }, {
                 xtype: 'datefield',
-                name: 'dob',
-                fieldLabel: 'Ngày Sinh'
+                name: 'birthday',
+                fieldLabel: 'Ngày Sinh',
+                bind: {
+                    value: '{userDescriptions.data.items.0.birthday}'
+                }
+            }, {
+                xtype: 'radiogroup',
+                fieldLabel: 'Giới tính: ',
+                // Arrange radio buttons into two columns, distributed vertically
+                columns: 4,
+                simpleValue: true,  // set simpleValue to true to enable value binding
+                bind: '{userDescriptions.data.items.0.gender}',
+                items: [
+                    { boxLabel: 'Nam', name: 'gender', inputValue: 'male' },
+                    { boxLabel: 'Nữ', name: 'gender', inputValue: 'female' },
+                    { boxLabel: 'Khác', name: 'gender', inputValue: 'other' }
+                ]
             }, {
                 xtype: 'textfield',
                 name: 'userName',
                 fieldLabel: 'Tên đăng nhập',
-                value: ''
+                bind: {
+                    value: '{userDescriptions.data.items.0.userName}'
+                }
             }, {
                 xtype: 'textfield',
                 name: 'email',
                 inputType: 'email',
                 fieldLabel: 'Email',
-                value: ''
+                bind: {
+                    value: '{userDescriptions.data.items.0.email}'
+                }
             }, {
                 xtype: 'textfield',
-                name: 'phoneNumber',
-                fieldLabel: 'Điện thoại di động',
-                value: ''
+                name: 'phone',
+                fieldLabel: 'Di động 1:',
+                bind: {
+                    value: '{userDescriptions.data.items.0.phone}'
+                }
             }, {
                 xtype: 'textfield',
-                name: 'skypeId',
+                name: 'phone1',
+                fieldLabel: 'Di động 2:',
+                bind: {
+                    value: '{userDescriptions.data.items.0.phone1}'
+                }
+            }, {
+                xtype: 'textfield',
+                name: 'address',
+                fieldLabel: 'Địa Chỉ:',
+                bind: {
+                    value: '{userDescriptions.data.items.0.address}'
+                }
+            },{
+                xtype: 'textfield',
+                name: 'identityId',
+                fieldLabel: 'Số CMND/Passpord:',
+                bind: {
+                    value: '{userDescriptions.data.items.0.identityId}'
+                }
+            },{
+                xtype: 'textfield',
+                name: 'placeOfIssue',
+                fieldLabel: 'Nơi Cấp:',
+                bind: {
+                    value: '{userDescriptions.data.items.0.placeOfIssue}'
+                }
+            },{
+                xtype: 'datefield',
+                name: 'dateOfIssue',
+                fieldLabel: 'Ngày Cấp',
+                bind: {
+                    value: '{userDescriptions.data.items.0.dateOfIssue}'
+                }
+            }, {
+                xtype: 'textfield',
+                name: 'skype',
                 fieldLabel: 'Skype ID',
-                value: ''
+                bind: {
+                    value: '{userDescriptions.data.items.0.skype}'
+                }
             }, {
-                xtype: 'radiofield',
-                name: 'accType',
-                value: 'acc_vie',
+                xtype: 'radiogroup',
                 fieldLabel: 'Loại tài khoản',
-                boxLabel: 'Cá nhân cư trú tại Việt Nam'
-            }, {
-                xtype: 'radiofield',
-                name: 'accType',
-                value: 'acc_non_vie',
-                fieldLabel: '',
-                labelSeparator: '',
-                hideEmptyLabel: false,
-                boxLabel: 'Cá nhân không cư trú tại Việt Nam'
-            }, {
-                xtype: 'radiofield',
-                name: 'accType',
-                value: 'acc_non_vie',
-                fieldLabel: '',
-                labelSeparator: '',
-                hideEmptyLabel: false,
-                boxLabel: 'Doanh nghiệp Việt Nam'
-            }, {
-                xtype: 'radiofield',
-                name: 'accType',
-                value: 'acc_non_vie',
-                fieldLabel: '',
-                labelSeparator: '',
-                hideEmptyLabel: false,
-                boxLabel: 'Doanh nghiệp nước ngoài'
+                // Arrange radio buttons into two columns, distributed vertically
+                columns: 4,
+                simpleValue: true,  // set simpleValue to true to enable value binding
+                bind: '{userDescriptions.data.items.0.accountType}',
+                items: [
+                    { boxLabel: 'Item 1', name: 'accountType', inputValue: 'acc_vie' },
+                    { boxLabel: 'Item 2', name: 'accountType', inputValue: 'acc_non_vie' },
+                    { boxLabel: 'Item 3', name: 'accountType', inputValue: 'acc_vie_en' },
+                    { boxLabel: 'Item 3', name: 'accountType', inputValue: 'acc_non_vie_en' }
+                ]
             }],
-            url: 'saveForm',
-            buttons: [{
-                text: 'Lưu thay đổi'
-            }
+            jsonSubmit: true,
+            actions: {
+                operation: {
+                    text: 'Lưu Thay Đổi',
+                    handler: function () {
+                        var form = this.up('form').getForm();
+                        if (form.isValid()) {
+                            form.submit({
+                                waitMsg: 'Loading...',
+                                method: 'POST',
+                                url: 'http://localhost:8080/userProfile/updateUserDesc', //this is the url where the form gets submitted
+                                success: function (form, action) {
+                                    Ext.Msg.alert('Success', action.result.msg);
+                                },
+                                failure: function (form, action) {
+                                    Ext.Msg.alert('Failed', action.result.msg);
+                                }
+                            });
+                        }
+                    }
+                }
+            },
+            defaultActionType: 'button',
+            tools: [
+                '@operation'
+            ],
+            buttons: [
 
+                '@operation'
 
             ]
-
         },
         {
             xtype: 'form',

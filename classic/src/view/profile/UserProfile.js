@@ -2,6 +2,7 @@ Ext.define('Admin.view.profile.UserProfile', {
     extend: 'Admin.view.profile.UserProfileBase',
     xtype: 'profile',
     cls: 'userProfile-container',
+    controller: 'profileController',
 
     requires: [
         'Ext.ux.layout.ResponsiveColumn'

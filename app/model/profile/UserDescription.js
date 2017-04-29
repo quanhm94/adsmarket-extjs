@@ -8,7 +8,7 @@ Ext.define('Admin.model.profile.UserDescription', {
             allowNull: false
         },
         {
-            type: 'int',
+            type: 'string',
             name: 'accountType'
         },
         {
@@ -16,7 +16,7 @@ Ext.define('Admin.model.profile.UserDescription', {
             name: 'address'
         },
         {
-            type: 'string',
+            type: 'date',
             name: 'birthday'
         },
         {

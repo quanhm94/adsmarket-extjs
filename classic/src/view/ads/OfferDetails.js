@@ -2,9 +2,8 @@ Ext.define('Admin.view.ads.OfferDetails', {
     extend: 'Ext.form.Panel',
     xtype: 'offer-details',
 
-    controller: 'offer-details',
-
     title: 'Details',
+    id: 'offer-detail-form',
     padding: 10,
     bodyPadding: 10,
 
@@ -31,9 +30,10 @@ Ext.define('Admin.view.ads.OfferDetails', {
 
             items: [{
                 xtype: 'displayfield',
-                name: 'thumb',
+                name: 'imageUrl',
                 renderer: function (value, field) {
-                    return '<img class="app-image" src="resources/images/apps/' + value + '" />';
+                    var formRecord = this.up('#offer-detail-form').getForm().getRecord();
+                    return '<img class="app-image" src="resources/images/apps/'+formRecord.get('id') +'/'+ value + '" />';
                 }
             }, {
                 xtype: 'displayfield',

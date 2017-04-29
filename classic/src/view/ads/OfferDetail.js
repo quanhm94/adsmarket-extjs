@@ -1,30 +1,36 @@
 Ext.define('Admin.view.ads.OfferDetail', {
     extend: 'Admin.model.Base',
-
-    idProperty: 'offerId',
-
+    idProperty: 'id',
     fields: [
-        {name: 'id', mapping: 'offerId', type: 'int'},
-        {name: 'name',     type: 'string'},
-        {name: 'thumb',     type: 'string'},
-        {name: 'status',     type: 'string'},
-        {name: 'price',     type: 'number'},
-        {name: 'platform', type: 'string'},
-        {name: 'region',  type: 'string'},
-        {name: 'cap',   type: 'string'},
-        {name: 'type',   type: 'string'},
-        {name: 'start_date',   type: 'date'},
-        {name: 'end_date',     type: 'date'},
-        {name: 'requirement',   type: 'string'},
-        {name: 'description', type: 'string'}
+        {
+            name: 'id',
+            type: 'int'
+        },
+        'name',
+        'originalPrice',
+        'originalCurrency',
+        'price',
+        'currency',
+        'platform',
+        'region',
+        'cap',
+        'type',
+        'startTime',
+        'endTime',
+        'requirement',
+        'description',
+        'status',
+        'sale',
+        'imageUrl'
     ],
 
     proxy: {
         type: 'ajax',
-        idParam: 'offerId',
-        url: 'resources/data/offer-detail.json',
+        idParam: 'id',
+        url: 'http://localhost:8080/offer/getOffer',
         reader: {
-            type: 'json'
+            type: 'json',
+            rootProperty: ''
         }
     }
 });

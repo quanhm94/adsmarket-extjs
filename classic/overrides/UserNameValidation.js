@@ -5,7 +5,7 @@ Ext.define('Admin.overrides.UserNameValidation', {
     // vtype validation function
     userNameValidate: function(value) {
                         var result = Ext.Ajax.request({
-                            url: 'http://localhost:8080/checkReferee',
+                            url: 'http://localhost:8080/security/checkReferee',
                             method: 'POST',
                             async: false,
                             params: {

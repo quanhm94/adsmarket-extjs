@@ -41,6 +41,8 @@ Ext.define('Admin.view.main.MainController', {
     onLogoutConfirm : function(choice) {
          if (choice === 'yes') {
              localStorage.clear();
+             Admin.user = null;
+             Admin.userId = null;
             this.setCurrentView('login');
             
          }
@@ -70,11 +72,11 @@ Ext.define('Admin.view.main.MainController', {
                 }
                 else {
                     action.stop();
-                    me.redirectTo('login');
+                    me.setCurrentView('login');
                 }
             } else {
                 action.stop();
-                me.redirectTo('login');
+                 me.setCurrentView('login');
             }
         } else {
             app.on(
@@ -262,8 +264,8 @@ Ext.define('Admin.view.main.MainController', {
     },
 
     showAppDetails: function(id) {
-        var detailModel =  new Admin.view.ads.OfferDetail();
-        detailModel.load(id, {
+        var detailModel =  Ext.create('Admin.view.ads.OfferDetail', {id: id});
+        detailModel.load({
             scope: this,
             success : function(record) {
                 newView = Ext.create({

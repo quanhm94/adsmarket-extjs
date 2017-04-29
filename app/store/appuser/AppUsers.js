@@ -9,7 +9,7 @@ Ext.define('Admin.store.appuser.AppUsers', {
         type: 'api',
         api: {
             create: '~api/appuser/appusers.json',
-            read: '~api/appuser/appusers',
+            read: '~api/appuser/appusers.json',
             update: '~api/appuser/appusers',
             destroy: '~api/appuser/appusers' 
         },
