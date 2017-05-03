@@ -2,6 +2,7 @@ Ext.define('Admin.store.profile.UserDescriptions', {
     extend: 'Ext.data.Store',
     alias: 'store.userDescriptions',
     model: 'Admin.model.profile.UserDescription',
+    storeId: 'profile-description',
 
     proxy: {
         type: 'ajax',
@@ -21,7 +22,7 @@ Ext.define('Admin.store.profile.UserDescriptions', {
 
         },
         extraParams : {
-            'userName': localStorage.getItem('userName')
+            userName: Ext.util.Cookies.get("userName")
         }
     },
     autoLoad: true

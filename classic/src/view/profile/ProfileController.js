@@ -3,7 +3,7 @@ Ext.define('Admin.view.profile.ProfileController', {
     alias: 'controller.profileController',
 
     // This method is called as a "handler" for the Add button in our view
-    submitPicture: function() {
+    showBankInfo: function() {
         Ext.Msg.alert('Add', 'The Add button was clicked');
     }
 });

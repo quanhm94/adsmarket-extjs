@@ -6,6 +6,7 @@ Ext.define('Admin.view.ads.OfferDetails', {
     id: 'offer-detail-form',
     padding: 10,
     bodyPadding: 10,
+    controller: 'offer-details',
 
     requires: [
         'Ext.ux.layout.ResponsiveColumn'
@@ -33,7 +34,7 @@ Ext.define('Admin.view.ads.OfferDetails', {
                 name: 'imageUrl',
                 renderer: function (value, field) {
                     var formRecord = this.up('#offer-detail-form').getForm().getRecord();
-                    return '<img class="app-image" src="resources/images/apps/'+formRecord.get('id') +'/'+ value + '" />';
+                    return '<img class="app-image" src="resources/images/apps/' + formRecord.get('id') + '/' + value + '" />';
                 }
             }, {
                 xtype: 'displayfield',
@@ -112,7 +113,7 @@ Ext.define('Admin.view.ads.OfferDetails', {
                         type: 'vbox',
                         align: 'left'
                     },
-                   
+
                     defaults: {
                         anchor: '100%',
                         labelWidth: 150
@@ -133,13 +134,13 @@ Ext.define('Admin.view.ads.OfferDetails', {
 
                             fieldLabel: '<span style="font-weight: bold;">Requirement</span>',
                             name: 'requirement',
-                            renderer: function(value, field) {
-                                return  '<p>Install and Open app.</p>'+
-                                '<p>No cheat, No fake, No duplicate, No Spam, No Bot traffic.</p>'+
-                                '<p>CR<4%, RR>=30%.</p>';
+                            renderer: function (value, field) {
+                                return '<p>Install and Open app.</p>' +
+                                    '<p>No cheat, No fake, No duplicate, No Spam, No Bot traffic.</p>' +
+                                    '<p>CR<4%, RR>=30%.</p>';
                             }
-                               
-                        
+
+
                         }, {
                             fieldLabel: 'Description',
                             name: 'description'
@@ -195,7 +196,50 @@ Ext.define('Admin.view.ads.OfferDetails', {
     ],
 
     buttons: [{
-        text: 'Request Tracking Link'
+        text: 'Request Tracking Link',
+        handler: function () {
+            var formRecord = this.up('#offer-detail-form').getForm().getRecord();
+            Ext.Ajax.request({
+                url: 'http://localhost:8080/offer/assignOffer',
+                method: 'POST',
+                scope: this,
+                async: false,
+                params: {
+                    offerId: formRecord.get('id'),
+                    userId: localStorage.getItem('userId')
+                },
+                success: function (response, opts) {
+                    if (response.responseText == "true") {
+                        new PNotify({
+                            title: 'Success',
+                            text: 'Get Tracking Link Sucsess',
+                            animate: {
+                                animate: true,
+                                in_class: 'bounceInLeft',
+                                out_class: 'bounceOutRight'
+                            },
+                            type: 'success'
+                        });
+                    }
+                    else {
+                         new PNotify({
+                            title: 'Failure',
+                            text: 'Get Tracking Link Failed',
+                            animate: {
+                                animate: true,
+                                in_class: 'bounceInLeft',
+                                out_class: 'bounceOutRight'
+                            },
+                            type: 'error'
+                        });
+                    }
+
+                },
+
+                failure: function (response, opts) {
+                }
+            });
+        }
     }]
 
 });

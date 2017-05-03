@@ -25,91 +25,104 @@ Ext.define('Admin.view.profile.BankInfoCard', {
             xtype: 'container',
             width: '70%',
             flex: 1,
+            style: {
+                cursor: 'pointer'
+            },
             margin: '10px 0 0 0',
             items: [
-                { 
+                {
                     xtype: 'image',
                     src: 'resources/images/user-profile/icons/bank.svg',
                     width: '100%',
                     autoEl: 'div'
-                 
-            
-        },
-        {
-               layout: {
-                   type: 'vbox',
-                   pack: 'center',
-                   align: 'center'
-               },
-               items: [
-                   {
-                         xtype: 'box',
-                         autoEl : {cn: 'Via Bank Transfer' } 
-                   }
-               ]
 
-              
-        }
-            ]
+
+                },
+                {
+                    layout: {
+                        type: 'vbox',
+                        pack: 'center',
+                        align: 'center'
+                    },
+                    items: [
+                        {
+                            xtype: 'box',
+                            autoEl: { cn: 'Via Bank Transfer' }
+                        }
+                    ]
+
+
+                }
+            ],
+            listeners: {
+                element: 'el',
+                click: 'showBankInfo'
+            }
         },
         {
             xtype: 'container',
             width: '70%',
-             flex: 1,
+            flex: 1,
+               style: {
+                cursor: 'pointer'
+            },
             items: [
-                { 
+                {
                     xtype: 'image',
                     src: 'resources/images/user-profile/icons/credit-card.svg',
                     width: '100%',
                     autoEl: 'div'
-                 
-            
-        },
-        {
-               layout: {
-                   type: 'vbox',
-                   pack: 'center',
-                   align: 'center'
-               },
-               items: [
-                   {
-                         xtype: 'box',
-                         autoEl : {cn: 'Via Debit Card' } 
-                   }
-               ]
 
-              
-        }
+
+                },
+                {
+                    layout: {
+                        type: 'vbox',
+                        pack: 'center',
+                        align: 'center'
+                    },
+                    items: [
+                        {
+                            xtype: 'box',
+                            autoEl: { cn: 'Via Debit Card' }
+                        }
+                    ]
+
+
+                }
             ]
         },
         {
             xtype: 'container',
             width: '70%',
-             flex: 1,
+            flex: 1,
+               style: {
+                cursor: 'pointer'
+            },
             items: [
-                { 
+                {
                     xtype: 'image',
                     src: 'resources/images/user-profile/icons/letter.svg',
                     width: '100%',
                     autoEl: 'div'
-                 
-            
-        },
-        {
-               layout: {
-                   type: 'vbox',
-                   pack: 'center',
-                   align: 'center'
-               },
-               items: [
-                   {
-                         xtype: 'box',
-                         autoEl : {cn: 'Via Post' } 
-                   }
-               ]
 
-              
-        }
+
+                },
+                {
+                    layout: {
+                        type: 'vbox',
+                        pack: 'center',
+                        align: 'center'
+                    },
+                    items: [
+                        {
+                            xtype: 'box',
+                            autoEl: { cn: 'Via Post' }
+                        }
+                    ]
+
+
+                }
             ]
         }
     ]

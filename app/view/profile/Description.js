@@ -2,6 +2,7 @@ Ext.define('Admin.view.profile.Description', {
     extend: 'Ext.Panel',
     xtype: 'profiledescription',
 
+
     requires: [
         'Ext.Button',
         'Ext.Img'
@@ -15,11 +16,29 @@ Ext.define('Admin.view.profile.Description', {
     titleAlign: 'left',
 
     cls: 'timeline-items-wrap user-profile-desc',
+    autoDestroy: true,
+    // initComponent: function () {
 
+    //     this.on({
+    //         scope: this,
+    //         activate: this.createPanel,
+    //         deactivate: this.destroyPanel
+    //     });
+    // },
+
+    // createPanel: function () {
+    //     this.add(this.panelCfg);
+    // },
+
+    // destroyPanel: function () {
+    //     this.removeAll();
+    // }
+    
     items: [
         {
             xtype: 'form',
             margin: '10px 0 0 0',
+            id: 'description-form',
             layout: 'form',
             title: 'Thông tin cá nhân',
             baseParams: {
@@ -28,7 +47,8 @@ Ext.define('Admin.view.profile.Description', {
             viewModel: {
                 stores: {
                     userDescriptions: {
-                        type: 'userDescriptions'
+                        type: 'userDescriptions',
+                        autoLoad: true
                     }
                 }
             },
@@ -94,21 +114,21 @@ Ext.define('Admin.view.profile.Description', {
                 bind: {
                     value: '{userDescriptions.data.items.0.address}'
                 }
-            },{
+            }, {
                 xtype: 'textfield',
                 name: 'identityId',
                 fieldLabel: 'Số CMND/Passpord:',
                 bind: {
                     value: '{userDescriptions.data.items.0.identityId}'
                 }
-            },{
+            }, {
                 xtype: 'textfield',
                 name: 'placeOfIssue',
                 fieldLabel: 'Nơi Cấp:',
                 bind: {
                     value: '{userDescriptions.data.items.0.placeOfIssue}'
                 }
-            },{
+            }, {
                 xtype: 'datefield',
                 name: 'dateOfIssue',
                 fieldLabel: 'Ngày Cấp',

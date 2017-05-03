@@ -38,9 +38,9 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
         if (isAuthenticated != undefined) {
             Admin.user = userid;
             Admin.userId = isAuthenticated;
-            localStorage.setItem("userLoggedIn", true);
-            localStorage.setItem("userName", userid);
-            localStorage.setItem("userId", isAuthenticated);
+            Ext.util.Cookies.set("userLoggedIn", true); 
+            Ext.util.Cookies.set("userId", isAuthenticated); 
+            Ext.util.Cookies.set("userName", userid); 
             this.redirectTo('dashboard', true);
         }
         else {
@@ -122,7 +122,7 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
         //     if (!refereeUserName) { return;}
         // }
         Ext.Ajax.request({
-            url: 'http://localhost:8181/security/register',
+            url: 'http://localhost:8080/security/register',
             method: 'POST',
             scope: me,
             async: false,
@@ -136,6 +136,10 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
             },
             success: function (response, opts) {
                 Admin.user = userName;
+                Admin.userId = isAuthenticated;
+                Ext.util.Cookies.set("userLoggedIn", true); 
+                Ext.util.Cookies.set("userId", isAuthenticated); 
+                Ext.util.Cookies.set("userName", userid); 
                 me.redirectTo('dashboard', true);
             },
 

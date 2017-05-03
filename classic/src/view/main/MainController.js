@@ -25,6 +25,7 @@ Ext.define('Admin.view.main.MainController', {
             action: 'onLoginChange'
         },
         'logout' : {
+             before  : 'checkSession',
             action: 'onLogoutChange'
         },
         'offer-details/:id': {
@@ -40,7 +41,9 @@ Ext.define('Admin.view.main.MainController', {
 
     onLogoutConfirm : function(choice) {
          if (choice === 'yes') {
-             localStorage.clear();
+                Ext.util.Cookies.clear("userLoggedIn"); 
+                Ext.util.Cookies.clear("userId"); 
+                Ext.util.Cookies.clear("userName"); 
              Admin.user = null;
              Admin.userId = null;
             this.setCurrentView('login');
@@ -48,7 +51,7 @@ Ext.define('Admin.view.main.MainController', {
          }
     },
     onLoginChange: function() {
-           
+               
                this.setCurrentView('dashboard');
     },
 
@@ -134,7 +137,15 @@ Ext.define('Admin.view.main.MainController', {
             if (existingItem) {
                 // We don't have a newView, so activate the existing view.
                 if (existingItem !== lastView) {
-                    mainLayout.setActiveItem(existingItem);
+                    existingItem.destroy();
+                    newView = Ext.create({
+                        xtype: view,
+                        routeId: hashTag,  // for existingItem search later
+                        hideMode: 'offsets'
+                    });
+                    Ext.suspendLayouts();
+                    mainLayout.setActiveItem(mainCard.add(newView));
+                    Ext.resumeLayouts(true);
                 }
                 newView = existingItem;
             }
