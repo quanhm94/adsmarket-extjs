@@ -266,13 +266,11 @@ Ext.define('Admin.view.dashboard.Dashboard', {
                     'requirement',
                     'description',
                     'status',
-
-
                     'sale',
                     'imageUrl'],
                 proxy: {
                     type: 'ajax',
-                    url: 'http://localhost:8080/offer/getActiveOffer',
+                    url: 'https://adsmarket-app.herokuapp.com/offer/getActiveOffer',
                     reader: {
                         type: 'json',
                         rootProperty: ''

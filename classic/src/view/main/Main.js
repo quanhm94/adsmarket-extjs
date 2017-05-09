@@ -103,6 +103,7 @@ Ext.define('Admin.view.main.Main', {
                     xtype: 'container',
                     flex: 1,
                     reference: 'mainCardPanel',
+                    autoDestroy: true,
                     cls: 'sencha-dash-right-main-container',
                     itemId: 'contentPanel',
                     layout: {

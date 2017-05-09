@@ -1,15 +1,50 @@
-{
-    success: true,
-    data: {
-        id: 1,
-        name: 'Archery King',
-        platform: 'iOS',
-        thumb: '1/9a450c6bbb4ee4f5e5a112b7d527d28b.jpg',
-        type: 'Incentive',
-        url: 'kitchensink',
-        base_price: 1000,
-        price: 2000,
-        sale: 15
+
+    {
+        "id": 1,
+        "name": "Archery King",
+        "platform": "iOS",
+        "thumb": "1/9a450c6bbb4ee4f5e5a112b7d527d28b.jpg",
+        "type": "Incentive",
+        "url": "kitchensink",
+        "base_price": 1000,
+        "price": 2000,
+        "sale": 15
+        
+    },
+    {
+       "id": 12,
+        "name": "Archery King Test",
+        "platform": "iOS",
+        "thumb": "1/9a450c6bbb4ee4f5e5a112b7d527d28b.jpg",
+        "type": "Incentive",
+        "url": "kitchensink",
+        "base_price": 1000,
+        "price": 2000,
+        "sale": 15
+        
+    },
+        {
+        "id": 4,
+        "name": "Archery King",
+        "platform": "iOS",
+        "thumb": "1/9a450c6bbb4ee4f5e5a112b7d527d28b.jpg",
+        "type": "Incentive",
+        "url": "kitchensink",
+        "base_price": 1000,
+        "price": 2000,
+        "sale": 15
+        
+    },
+        {
+  "id": 4,
+        "name": "Archery King",
+        "platform": "iOS",
+        "thumb": "1/9a450c6bbb4ee4f5e5a112b7d527d28b.jpg",
+        "type": "Incentive",
+        "url": "kitchensink",
+        "base_price": 1000,
+        "price": 2000,
+        "sale": 15
         
     }
-}
+

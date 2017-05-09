@@ -65,8 +65,8 @@ Ext.define('Admin.view.main.MainController', {
         var me     = this,
             action = args[args.length - 1],
             app    = Admin.app;
-        var isLoggedIn = localStorage.getItem('userLoggedIn');
-        var loggedInUser = localStorage.getItem('userName');
+        var isLoggedIn = Ext.util.Cookies.get("userLoggedIn");
+        var loggedInUser = Ext.util.Cookies.get("userName");
 
         if (app.appready) {
             if (Admin.user || isLoggedIn == "true") {
@@ -92,7 +92,7 @@ Ext.define('Admin.view.main.MainController', {
     },
 
     checkSession : function() {
-        var isAdminCheck = localStorage.getItem('isAdmin');
+        var isAdminCheck = Ext.util.Cookies.get('isAdmin');
         this.handleSessionCheck(isAdminCheck, arguments);
     },
 

@@ -55,6 +55,7 @@ Ext.define('Admin.store.NavigationTree', {
                 viewType: 'profile',
                 leaf: true
             },
+            
             {
                 text: 'My Offers',
                 iconCls: 'x-fa fa-list',
@@ -66,6 +67,12 @@ Ext.define('Admin.store.NavigationTree', {
                 text: 'FAQ',
                 iconCls: 'x-fa fa-question',
                 viewType: 'faq',
+                leaf: true
+            },
+             {
+                text: 'Admin Panel',
+                iconCls: 'x-fa fa-user',
+                viewType: 'admin-panel',
                 leaf: true
             },
             {

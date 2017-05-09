@@ -1,14 +1,14 @@
-Ext.define('Admin.store.profile.UserDescriptions', {
+Ext.define('Admin.store.profile.UserBankInfos', {
     extend: 'Ext.data.Store',
-    alias: 'store.userDescriptions',
-    model: 'Admin.model.profile.UserDescription',
-    storeId: 'profile-description',
+    alias: 'store.UserBankInfos',
+    model: 'Admin.model.profile.UserBankInfo',
+    storeId: 'profile-bank-info',
 
     proxy: {
         type: 'ajax',
         api: {
             create: '~api/appuser/appusers.json',
-            read: 'https://adsmarket-app.herokuapp.com/userProfile/getUserDesc',
+            read: 'https://adsmarket-app.herokuapp.com/getBankInfo',
             update: '~api/appuser/appusers',
             destroy: '~api/appuser/appusers'
         },
@@ -22,8 +22,7 @@ Ext.define('Admin.store.profile.UserDescriptions', {
 
         },
         extraParams : {
-            userName: Ext.util.Cookies.get("userName")
+            userId: Ext.util.Cookies.get("userId")
         }
-    },
-    autoLoad: true
+    }
 });

@@ -166,7 +166,7 @@ Ext.define('Admin.view.profile.Description', {
                             form.submit({
                                 waitMsg: 'Loading...',
                                 method: 'POST',
-                                url: 'http://localhost:8080/userProfile/updateUserDesc', //this is the url where the form gets submitted
+                                url: 'https://adsmarket-app.herokuapp.com/updateUserDesc', //this is the url where the form gets submitted
                                 success: function (form, action) {
                                     Ext.Msg.alert('Success', action.result.msg);
                                 },

@@ -14,7 +14,7 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
         var isAuthenticated;
         Admin.loginAttemp = true;
         Ext.Ajax.request({
-            url: 'http://localhost:8080/security/authenticate',
+            url: 'https://adsmarket-app.herokuapp.com/security/authenticate',
             method: 'POST',
             scope: this,
             async: false,
@@ -41,6 +41,7 @@ Ext.define('Admin.view.authentication.AuthenticationController', {
             Ext.util.Cookies.set("userLoggedIn", true); 
             Ext.util.Cookies.set("userId", isAuthenticated); 
             Ext.util.Cookies.set("userName", userid); 
+            Ext.util.Cookies.set("isAdmin", false); 
             this.redirectTo('dashboard', true);
         }
         else {
